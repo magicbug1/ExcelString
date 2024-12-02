@@ -1,10 +1,26 @@
-fun main(args: Array<String>) {
-    val firstColumn = 2
-    val lastColumn = 55 //firstColumn + 26 - 1
+fun main() {
+    print("Número primera columna [1]: ")
+    val firstColumnInput = readln()
+    val firstColumn = stringToNumber(firstColumnInput, 1)
+
+    print("Cuantas columnas? [1]: ")
+    val numberColumnsString = readln()
+    var numberColmns = (readln() ?: "").toInt()
+    val lastColumn = firstColumn + numberColmns - 1
     val row = 3
     val tableName = "asp_migra_period"
 
-    print( getConcatString(tableName, firstColumn, lastColumn, row) )
+    print(getConcatString(tableName, firstColumn, lastColumn, row))
+}
+
+fun stringToNumber(input: String, default: Int = 0): Int {
+    var num = 0
+    try {
+        num = input.toInt()
+    } catch (e: NumberFormatException) {
+        num = default
+    }
+    return num
 }
 
 fun getConcatString(tableName: String, firstColumn: Int, lastColumn: Int, row: Int): String {

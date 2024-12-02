@@ -1,7 +1,30 @@
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import java.io.ByteArrayInputStream
 
 class MainKtTest {
+
+    fun provideInput(data: String) {
+        val t: ByteArray = byteArrayOf('1'.code.toByte(), '3'.code.toByte())
+        //val testIn = ByteArrayInputStream(data.toByteArray())
+        val testIn = ByteArrayInputStream(t)
+        System.setIn(testIn)
+    }
+    @Test
+    fun stringToNumber_returnsDefaultValue_onEmptyString() {
+        //provideInput("")
+        assertEquals(5, stringToNumber("", 5))
+    }
+    @Test
+    fun stringToNumber_returnsDefaultValue_onBadInput() {
+        //provideInput("two")
+        assertEquals(4, stringToNumber("two", 4))
+    }
+    @Test
+    fun stringToNumber_returnsCorrectValue_onNumberString() {
+        //provideInput("13")
+        assertEquals(13, stringToNumber("13", 2))
+    }
 
     @Test
     fun getColumn_returnsColumnLetter() {
