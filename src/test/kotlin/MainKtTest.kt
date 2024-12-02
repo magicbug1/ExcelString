@@ -5,25 +5,23 @@ import java.io.ByteArrayInputStream
 class MainKtTest {
 
     fun provideInput(data: String) {
-        val t: ByteArray = byteArrayOf('1'.code.toByte(), '3'.code.toByte())
-        //val testIn = ByteArrayInputStream(data.toByteArray())
-        val testIn = ByteArrayInputStream(t)
+        val testIn = ByteArrayInputStream(data.toByteArray())
         System.setIn(testIn)
     }
     @Test
     fun stringToNumber_returnsDefaultValue_onEmptyString() {
-        //provideInput("")
-        assertEquals(5, stringToNumber("", 5))
+        provideInput(" ")
+        assertEquals(5, getNumber(5))
     }
     @Test
     fun stringToNumber_returnsDefaultValue_onBadInput() {
-        //provideInput("two")
-        assertEquals(4, stringToNumber("two", 4))
+        provideInput("two")
+        assertEquals(4, getNumber(4))
     }
     @Test
     fun stringToNumber_returnsCorrectValue_onNumberString() {
-        //provideInput("13")
-        assertEquals(13, stringToNumber("13", 2))
+        provideInput("13")
+        assertEquals(13, getNumber(2))
     }
 
     @Test

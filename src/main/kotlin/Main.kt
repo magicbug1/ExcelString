@@ -1,26 +1,19 @@
 fun main() {
     print("Número primera columna [1]: ")
-    val firstColumnInput = readln()
-    val firstColumn = stringToNumber(firstColumnInput, 1)
+    val firstColumn = getNumber(1)
 
-    print("Cuantas columnas? [1]: ")
-    val numberColumnsString = readln()
-    var numberColmns = (readln() ?: "").toInt()
+    print("Cuantas columnas? [10]: ")
+    val numberColmns = getNumber(10)
     val lastColumn = firstColumn + numberColmns - 1
-    val row = 3
-    val tableName = "asp_migra_period"
+
+    print("Fila cabecera? [1]: ")
+    val row = getNumber(1)
+
+    print("Nombre tabla [table]: ")
+    var tableName = readln()
+    if (tableName == "") tableName = "table"
 
     print(getConcatString(tableName, firstColumn, lastColumn, row))
-}
-
-fun stringToNumber(input: String, default: Int = 0): Int {
-    var num = 0
-    try {
-        num = input.toInt()
-    } catch (e: NumberFormatException) {
-        num = default
-    }
-    return num
 }
 
 fun getConcatString(tableName: String, firstColumn: Int, lastColumn: Int, row: Int): String {
@@ -29,6 +22,14 @@ fun getConcatString(tableName: String, firstColumn: Int, lastColumn: Int, row: I
             " " +
             getValuesPart(firstColumn, lastColumn, row + 1) +
             ")"
+}
+
+fun getNumber(default: Int = 0): Int {
+    return try {
+        readln().toInt()
+    } catch (e: NumberFormatException) {
+        default
+    }
 }
 
 fun getInsertPart(tableName: String, firstColumn: Int, lastColumn: Int, row: Int): String {
